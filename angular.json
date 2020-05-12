@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ng-tapis-file-browser"
+    }
+  },
+  "defaultProject": "ng-tapis-file-browser",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+@import "styles/_variables";
+@import "~bootstrap/scss/bootstrap";
+@import "styles/_bootswatch";
+@import "~font-awesome/css/font-awesome.min.css";
+
+
+.clickable {
+  cursor: pointer;
+}
+
+.footer {
+  background: #333;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  height: 50px;
+  padding: 5px;
+
+  & div {
+  padding-left: 10px;
+  }
+}
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
