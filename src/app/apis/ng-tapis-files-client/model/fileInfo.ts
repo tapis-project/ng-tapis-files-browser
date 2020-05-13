@@ -11,8 +11,8 @@
  */
 
 
-export interface FileInfo {
-    lastModified?: Date;
+export interface FileInfo { 
+    lastModified?: string;
     name?: string;
     path?: string;
     /**
