@@ -58,7 +58,7 @@ export class DataBrowserComponent implements OnInit {
   }
 
   preview(fileItem: FileInfo): void {
-    const modalRef = this.modalService.open(ModalPreviewComponent);
+    const modalRef = this.modalService.open(ModalPreviewComponent, { size: 'xl' });
     modalRef.componentInstance.file = fileItem;
     modalRef.componentInstance.system = this.activeSystem;
   }

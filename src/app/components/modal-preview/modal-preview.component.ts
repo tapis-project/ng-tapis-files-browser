@@ -12,10 +12,12 @@ export class ModalPreviewComponent implements OnInit {
 
   @Input() file: FileInfo;
   @Input() system: TSystem;
+  public sourceURI: string;
 
   constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit(): void {
+    this.sourceURI = `https://dev.develop.tapis.io/v3/files/content/${this.system.name}/${this.file.path}`;
   }
 
 }
