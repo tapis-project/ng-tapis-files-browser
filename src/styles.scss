@@ -2,15 +2,15 @@
 @import "styles/_variables";
 @import "~bootstrap/scss/bootstrap";
 @import "styles/_bootswatch";
-@import "~font-awesome/css/font-awesome.min.css";
-
+@import "~@fortawesome/fontawesome-free/css/fontawesome.css";
+@import "~@fortawesome/fontawesome-free/css/all.css";
 
 .clickable {
   cursor: pointer;
 }
 
 .footer {
-  background: #333;
+  background: #adb5bd;
   width: 100%;
   position: absolute;
   bottom: 0;
@@ -22,5 +22,8 @@
   }
 }
 
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+.navbar {
+  border-bottom: 3px solid #2fa987;
+  background-color: #bcbcbc;
+}
+
