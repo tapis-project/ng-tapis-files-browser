@@ -10,7 +10,6 @@ export class JwtInterceptor implements HttpInterceptor {
   constructor(private authSvc: AuthService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
     if (request.method.toLowerCase() !== 'options' && request.url.indexOf(environment.baseUrl) > -1) {
       if (this.authSvc.isLoggedIn()) {
         request = request.clone({
