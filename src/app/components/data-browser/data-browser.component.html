@@ -23,30 +23,32 @@
 
       </div>
     </div>
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th scope="col"> Name </th>
-          <th scope="col"> Size </th>
-          <th scope="col"> Last Modified</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let file of listing$ | async ">
-          <td>
-            <i *ngIf="file.path.endsWith('/')" class="far fa-folder-open fa-fw"> </i>
-            <i *ngIf="!file.path.endsWith('/')" class="far fa-file fa-fw"> </i>
-            <span class="tapis-file-name clickable" (click)="preview(file)">{{ file.name }} </span>
-          </td>
-          <td>
-            {{ file.size | filesize }}
-          </td>
-          <td>
-            {{ file.lastModified | date:"long" }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="file-listing-table">
+      <table class="table table-hover ">
+        <thead>
+          <tr>
+            <th scope="col"> Name </th>
+            <th scope="col"> Size </th>
+            <th scope="col"> Last Modified</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let file of listing$ | async ">
+            <td>
+              <i *ngIf="file.path.endsWith('/')" class="far fa-folder-open fa-fw"> </i>
+              <i *ngIf="!file.path.endsWith('/')" class="far fa-file fa-fw"> </i>
+              <span class="tapis-file-name clickable" (click)="preview(file)">{{ file.name }} </span>
+            </td>
+            <td>
+              {{ file.size | filesize }}
+            </td>
+            <td>
+              {{ file.lastModified | date:"long" }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
 </div>
