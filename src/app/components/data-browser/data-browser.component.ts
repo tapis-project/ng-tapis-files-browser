@@ -34,7 +34,6 @@ export class DataBrowserComponent implements OnInit {
         this.systemsListing.next(systems);
         this.activeSystemSubject.next(systems[0]);
     }, (error) => {
-      console.log(error);
     });
 
 
