@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FileOperationsService} from '../../apis/ng-tapis-files-client/api/fileOperations.service';
+import {FileOperationsService} from '../../apis/ng-tapis-files-client';
 import {SystemsService, TSystem} from '../../apis/ng-tapis-systems-client';
 import {FileInfo} from '../../apis/ng-tapis-files-client';
 import {Observable, ReplaySubject} from 'rxjs';
@@ -39,7 +39,8 @@ export class DataBrowserComponent implements OnInit {
 
     this.activeSystem$.subscribe( (next) => {
       this.activeSystem = next;
-      this.browseFolder('/');
+      this.listing.next([]);
+      this.browseFolder('');
     });
   }
 
