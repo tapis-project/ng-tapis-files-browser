@@ -15,10 +15,10 @@
   <div class="col col-md-10 ">
     <div class="row justify-content-end py-2">
       <div>
-        <button type="button" class="btn btn-outline-primary"> <i class="fas fa-pen"></i> Rename</button>
-        <button type="button" class="btn btn-outline-primary"> <i class="fas fa-trash-alt"></i> Trash</button>
-        <button type="button" class="btn btn-outline-primary"> <i class="fas fa-arrows-alt"></i> Move</button>
-        <button type="button" class="btn btn-outline-primary"> <i class="fas fa-copy"></i> Copy</button>
+<!--        <button type="button" class="btn btn-outline-primary"> <i class="fas fa-pen"></i> Rename</button>-->
+        <button type="button" class="btn btn-outline-primary" (click)="delete()"> <i class="fas fa-trash-alt"></i> Trash</button>
+<!--        <button type="button" class="btn btn-outline-primary"> <i class="fas fa-arrows-alt"></i> Move</button>-->
+<!--        <button type="button" class="btn btn-outline-primary"> <i class="fas fa-copy"></i> Copy</button>-->
         <button type="button" class="btn btn-outline-primary"> <i class="fas fa-download"></i> Download</button>
 
       </div>
@@ -33,7 +33,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let file of listing$ | async ">
+          <tr *ngFor="let file of listing$ | async " (click)="selectFile(file)" class="clickable" [ngClass]="{'selected-file': file === selectedFile }">
             <td>
               <i *ngIf="file.path.endsWith('/')" class="far fa-folder-open fa-fw"> </i>
               <i *ngIf="!file.path.endsWith('/')" class="far fa-file fa-fw"> </i>

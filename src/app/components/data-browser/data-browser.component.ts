@@ -5,6 +5,7 @@ import {FileInfo} from '../../apis/ng-tapis-files-client';
 import {Observable, ReplaySubject} from 'rxjs';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ModalPreviewComponent} from '../modal-preview/modal-preview.component';
+import {filter, map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-data-browser',
@@ -24,6 +25,8 @@ export class DataBrowserComponent implements OnInit {
   public activeSystem: TSystem;
   private systemsListing: ReplaySubject<Array<TSystem>> = new ReplaySubject<Array<TSystem>>(1);
   public readonly systemsListing$: Observable<Array<TSystem>> = this.systemsListing.asObservable();
+  public selectedFile: FileInfo;
+  private currentPath: string;
 
 
 
@@ -40,7 +43,8 @@ export class DataBrowserComponent implements OnInit {
     this.activeSystem$.subscribe( (next) => {
       this.activeSystem = next;
       this.listing.next([]);
-      this.browseFolder('');
+      this.currentPath = '';
+      this.browseFolder(this.currentPath);
     });
   }
 
@@ -49,7 +53,7 @@ export class DataBrowserComponent implements OnInit {
   }
 
   browseFolder(path: string) {
-    console.log(this.activeSystem, path);
+    this.currentPath = path;
     this.fileOpsService.listFiles(this.activeSystem.name, path).subscribe( (resp) => {
       this.listing.next(resp.result);
     }, (error) => {
@@ -61,6 +65,17 @@ export class DataBrowserComponent implements OnInit {
     const modalRef = this.modalService.open(ModalPreviewComponent, { size: 'xl' });
     modalRef.componentInstance.file = fileItem;
     modalRef.componentInstance.system = this.activeSystem;
+  }
+
+  delete(): void {
+    this.fileOpsService._delete(this.activeSystem.name, this.selectedFile.path)
+      .subscribe( (resp) => {
+      this.browseFolder(this.currentPath);
+    });
+  }
+
+  selectFile(file: FileInfo): void {
+    this.selectedFile = this.selectedFile === file ? null : file;
   }
 
 
