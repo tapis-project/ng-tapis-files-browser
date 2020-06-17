@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {FileInfo} from '../../apis/ng-tapis-files-client';
 import {TSystem} from '../../apis/ng-tapis-systems-client';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-modal-preview',
@@ -17,7 +18,7 @@ export class ModalPreviewComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit(): void {
-    this.sourceURI = `https://dev.develop.tapis.io/v3/files/content/${this.system.name}/${this.file.path}`;
+    this.sourceURI = `${environment.baseUrl}/v3/files/content/${this.system.name}/${this.file.path}`;
   }
 
 }
