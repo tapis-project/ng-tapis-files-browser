@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NotificationsService} from '../../services/notifications.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-main',
@@ -7,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  constructor(private notifications: NotificationsService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    console.log("WEWEASDASDSDFDS");
+    this.notifications.messages.subscribe((m) => {
+      this.toastr.success(m.message);
+    });
   }
 
 }

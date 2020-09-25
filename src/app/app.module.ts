@@ -19,6 +19,8 @@ import { ModalPreviewComponent } from './components/modal-preview/modal-preview.
 import { SecuredImageComponent } from './components/secured-image/secured-image.component';
 import { SecuredTextComponent } from './components/secured-text/secured-text.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ToastrModule} from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     NgxFilesizeModule,
     NgbModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [
     AuthService,

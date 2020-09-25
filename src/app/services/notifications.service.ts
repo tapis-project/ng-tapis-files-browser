@@ -4,34 +4,26 @@ import { environment } from '../../environments/environment';
 import {EMPTY, Subject} from 'rxjs';
 import {catchError, switchAll, tap} from 'rxjs/operators';
 
+interface INotification {
+  tenantId: string;
+  recipient: string;
+  message: string;
+  created: Date;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationsService {
 
-  private socket$: WebSocketSubject<any>;
-  private messagesSubject$ = new Subject();
-  public messages$ = this.messagesSubject$.pipe(switchAll(), catchError(e => { throw e; }));
+  private messagesSubject$ = new Subject<INotification>();
+  public messages = this.messagesSubject$.asObservable();
 
-  public connect(): void {
-
-    if (!this.socket$ || this.socket$.closed) {
-      this.socket$ = this.getNewWebSocket();
-      const messages = this.socket$.pipe(
-        tap({
-          error: error => console.log(error),
-        }), catchError(_ => EMPTY));
-      this.messagesSubject$.next(messages);
-    }
+  constructor() {
+    const subject = webSocket<INotification>('ws://localhost:8081/notifications');
+    subject.subscribe((m) => {
+      this.messagesSubject$.next(m);
+    });
   }
 
-  private getNewWebSocket() {
-    return webSocket('localhost:8081');
-  }
-  sendMessage(msg: any) {
-    this.socket$.next(msg);
-  }
-  close() {
-    this.socket$.complete();
-  }
 }
