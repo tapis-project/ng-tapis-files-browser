@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://tacc.tapis.io'
+  baseUrl: 'https://dev.develop.tapis.io'
 };
 
 /*
